@@ -19,8 +19,8 @@ spec:
                 - NVIDIA-GeForce-RTX-3090
       volumes:
       - name: data
-    persistentVolumeClaim:
-      claimName: parth-residue
+        persistentVolumeClaim:
+          claimName: parth-residue
       - name: dshm
         emptyDir:
           medium: Memory
@@ -42,7 +42,7 @@ spec:
             ephemeral-storage: "1000G"
         volumeMounts:
         - name: data
-        mountPath: /root/home/data
+          mountPath: /root/home/data
         - name: dshm
           mountPath: /dev/shm
       restartPolicy: Never

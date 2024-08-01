@@ -42,8 +42,8 @@ wandb.init(project='Residue-Segmentation-1', entity='agrifarm')
 # image_path = 'U:\\a_ImageData_Draft_moved_DNU\\CoverCrops\\All_2018_2019_1m_Images\\BigDataset\\Images\\'
 # mask_path = 'U:\\a_ImageData_Draft_moved_DNU\\CoverCrops\\All_2018_2019_1m_Images\\BigDataset\\Masks\\'
 
-image_path = 'Images/'
-mask_path = 'Masks/'
+image_path = 'Residue_02_16/Images/'
+mask_path = 'Residue_02_16/Masks/'
 
 # Create the MaskFormer Image Preprocessor
 processor = MaskFormerImageProcessor(
