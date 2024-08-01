@@ -1,0 +1,48 @@
+apiVersion: batch/v1
+kind: Job
+metadata: 
+  name: parth-job-dem2so-onet-rgb-64-1
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: nvidia.com/gpu.product
+                operator: In
+                values:
+                - NVIDIA-A100-SXM4-80GB
+                - NVIDIA-A10
+                - NVIDIA-A6000
+                - NVIDIA-GeForce-RTX-3090
+      volumes:
+      - name: data
+    persistentVolumeClaim:
+      claimName: parth-residue
+      - name: dshm
+        emptyDir:
+          medium: Memory
+      containers:
+      - name: gpu-container
+        image: gitlab-registry.nrp-nautilus.io/smatous/ali-pytorch-tensorflow
+        command: ["/bin/bash", "-c"]
+        args: ["cd /root/home/data; mkdir MaskformerModel; pip install albumentations; pip install datasets; pip install transformers; pip install wandb; pip install evaluate; pip install Image; pip install torchvision; git clone https://github.com/ParthUpadhyay1/Maskformer_ResidueSegment.git; cd Maskformer_ResidueSegment; cp maskformerResSeg.py ..; cd ..; export WANDB_API_KEY=8c1a56f1ebd7e302fab231ebf293ea0979b35164; python maskformerResSeg.py"]  
+        resources:
+          limits:
+            memory: 64Gi
+            cpu: 16
+            nvidia.com/gpu: 1
+            ephemeral-storage: "1000G"
+          requests:
+            memory: 64Gi
+            cpu: 16
+            nvidia.com/gpu: 1
+            ephemeral-storage: "1000G"
+        volumeMounts:
+        - name: data
+        mountPath: /root/home/data
+        - name: dshm
+          mountPath: /dev/shm
+      restartPolicy: Never
