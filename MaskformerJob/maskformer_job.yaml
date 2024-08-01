@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata: 
-  name: parth-job-dem2so-onet-rgb-64-1
+  name: parth-job-maskseg-rgb
 spec:
   template:
     spec:
