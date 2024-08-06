@@ -32,8 +32,8 @@ wandb.login()
 wandb.init(project='Distributed-Maskformer-1', entity='agrifarm')
 
 # Create the dataset
-image_path = 'Residue_02_16/Images/'
-mask_path = 'Residue_02_16/Masks/'
+image_path = '/root/home/projectData/Residue_02_16/Images/'
+mask_path = '/root/home/projectData/Residue_02_16/Masks/'
 
 # Create the MaskFormer Image Preprocessor
 processor = MaskFormerImageProcessor(
