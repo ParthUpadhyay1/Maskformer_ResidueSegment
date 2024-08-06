@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata: 
-  name: parth-job-maskseg-rgb
+  name: parth-dist-job-maskseg
 spec:
   template:
     spec:
@@ -17,6 +17,7 @@ spec:
                 - NVIDIA-A10
                 - NVIDIA-A6000
                 - NVIDIA-GeForce-RTX-3090
+                - NVIDIA-GeForce-RTX-2080-Ti
       volumes:
       - name: data
         persistentVolumeClaim:
@@ -28,17 +29,17 @@ spec:
       - name: gpu-container
         image: gitlab-registry.nrp-nautilus.io/smatous/ali-pytorch-tensorflow
         command: ["/bin/bash", "-c"]
-        args: ["cd /root/home/data; mkdir MaskformerModel; pip install albumentations; pip install datasets; pip install transformers; pip install wandb; pip install evaluate; pip install Image; pip install torchvision; git clone https://github.com/ParthUpadhyay1/Maskformer_ResidueSegment.git; cd Maskformer_ResidueSegment; cp maskformerResSeg.py ..; cd ..; export WANDB_API_KEY=8c1a56f1ebd7e302fab231ebf293ea0979b35164; python maskformerResSeg.py"]  
+        args: ["cd /root/home/data; pip install albumentations; pip install datasets; pip install transformers; pip install wandb; pip install evaluate; pip install Image; pip install torchvision; git clone https://github.com/ParthUpadhyay1/Maskformer_ResidueSegment.git; cd Maskformer_ResidueSegment/MaskformerJob_Acclerate; cp finalDistTrainSeg.py ../..; cd ../..; export WANDB_API_KEY=8c1a56f1ebd7e302fab231ebf293ea0979b35164; python finalDistTrainSeg.py"]  
         resources:
           limits:
             memory: 64Gi
             cpu: 16
-            nvidia.com/gpu: 1
+            nvidia.com/gpu: 4
             ephemeral-storage: "1000G"
           requests:
             memory: 64Gi
             cpu: 16
-            nvidia.com/gpu: 1
+            nvidia.com/gpu: 4
             ephemeral-storage: "1000G"
         volumeMounts:
         - name: data
