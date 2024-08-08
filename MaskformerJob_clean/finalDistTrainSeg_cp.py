@@ -189,7 +189,7 @@ for epoch in range(num_epochs):
         loss = outputs.loss
         train_loss.append(loss.item())
         loss.backward()
-        if idx % 50 == 0:
+        if idx % 100 == 0:
             avg_train_loss = round(sum(train_loss)/len(train_loss), 6)
             # print(f"  Training loss: {avg_train_loss}")
             wandb.log({"training_loss": avg_train_loss, "epoch": epoch})
@@ -208,7 +208,7 @@ for epoch in range(num_epochs):
             )
             loss = outputs.loss
             val_loss.append(loss.item())
-            if idx % 50 == 0:
+            if idx % 100 == 0:
                 avg_val_loss = round(sum(val_loss)/len(val_loss), 6)
                 # print(f"  Validation loss: {avg_val_loss}")
                 wandb.log({"validation_loss": avg_val_loss, "epoch": epoch})
