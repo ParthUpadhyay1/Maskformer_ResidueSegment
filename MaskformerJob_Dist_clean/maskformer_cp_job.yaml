@@ -30,7 +30,7 @@ spec:
       - name: gpu-container
         image: gitlab-registry.nrp-nautilus.io/smatous/ali-pytorch-tensorflow
         command: ["/bin/bash", "-c"]
-        args: ["cd /root/home/; mkdir projectData; cp -r data/Residue_02_16 projectData/; cd /root/home/data; pip install albumentations; pip install datasets; pip install transformers; pip install wandb; pip install evaluate; pip install Image; pip install torchvision; git clone https://github.com/ParthUpadhyay1/Maskformer_ResidueSegment.git; cd Maskformer_ResidueSegment/MaskformerJob_Acclerate; cp finalDistTrainSeg_cp.py ../..; cd ../..; export WANDB_API_KEY=8c1a56f1ebd7e302fab231ebf293ea0979b35164; torchrun --nproc_per_node=4 --master_addr=localhost --master_port=29500 finalDistTrainSeg_cp.py"]  
+        args: ["cd /root/home/; mkdir projectData; cp -r data/Residue_02_16 projectData/; cd /root/home/data; pip install albumentations; pip install datasets; pip install transformers; pip install wandb; pip install evaluate; pip install Image; pip install torchvision; git clone https://github.com/ParthUpadhyay1/Maskformer_ResidueSegment.git; cd Maskformer_ResidueSegment/MaskformerJob_Dist_clean; cp finalDistTrainSeg_cp.py ../..; cd ../..; export WANDB_API_KEY=8c1a56f1ebd7e302fab231ebf293ea0979b35164; torchrun --nproc_per_node=4 --master_addr=localhost --master_port=29500 finalDistTrainSeg_cp.py"]  
         resources:
           limits:
             memory: 64Gi
