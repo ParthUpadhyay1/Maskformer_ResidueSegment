@@ -29,7 +29,18 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 wandb.login()
 
 # Initialize a new W&B run
-wandb.init(project='Distributed-Maskformer-1', entity='agrifarm')
+wandb.init(
+    project='Distributed-Maskformer-1', 
+    entity='agrifarm',
+    name=f"experiment_1",
+      # Track hyperparameters and run metadata
+      config={
+      "learning_rate": 0.02,
+      "architecture": "Maskformer",
+      "dataset": "MyResidueData",
+      "epochs": 25,
+      }
+    )
 
 # Create the dataset
 image_path = '/root/home/projectData/Residue_02_16/Images/'
@@ -189,7 +200,7 @@ for epoch in range(num_epochs):
         loss = outputs.loss
         train_loss.append(loss.item())
         loss.backward()
-        if idx % 100 == 0:
+        if idx % 200 == 0:
             avg_train_loss = round(sum(train_loss)/len(train_loss), 6)
             # print(f"  Training loss: {avg_train_loss}")
             wandb.log({"training_loss": avg_train_loss, "epoch": epoch})
@@ -208,7 +219,7 @@ for epoch in range(num_epochs):
             )
             loss = outputs.loss
             val_loss.append(loss.item())
-            if idx % 100 == 0:
+            if idx % 200 == 0:
                 avg_val_loss = round(sum(val_loss)/len(val_loss), 6)
                 # print(f"  Validation loss: {avg_val_loss}")
                 wandb.log({"validation_loss": avg_val_loss, "epoch": epoch})
@@ -233,6 +244,10 @@ for epoch in range(num_epochs):
     model_path = os.path.join(iteration_dir, "model")
     model.module.save_pretrained(model_path)
     processor.save_pretrained(model_path)
+    wandb.log_model(model_path, "my_residue_model", aliases=[f"epoch-{epoch+1}"])
+
+# Mark the run as finished
+wandb.finish()
 
 
 # # Save the trained model
