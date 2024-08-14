@@ -35,7 +35,7 @@ wandb.init(
     name=f"experiment_1",
       # Track hyperparameters and run metadata
       config={
-      "learning_rate": 0.02,
+      "batch_size": 64,
       "architecture": "Maskformer",
       "dataset": "MyResidueData",
       "epochs": 25,
@@ -43,8 +43,8 @@ wandb.init(
     )
 
 # Create the dataset
-image_path = '/root/home/projectData/Residue_02_16/Images/'
-mask_path = '/root/home/projectData/Residue_02_16/Masks/'
+image_path = '/root/home/data/Residue_02_16/Images/'
+mask_path = '/root/home/data/Residue_02_16/Masks/'
 
 # Create the MaskFormer Image Preprocessor
 processor = MaskFormerImageProcessor(
@@ -152,14 +152,14 @@ val_sampler = DistributedSampler(val_dataset)
 
 train_dataloader = DataLoader(
     train_dataset,
-    batch_size=32,
+    batch_size=64,
     shuffle=False,
     sampler=train_sampler,
     collate_fn=collate_fn
 )
 val_dataloader = DataLoader(
     val_dataset,
-    batch_size=32,
+    batch_size=64,
     shuffle=False,
     sampler=val_sampler,
     collate_fn=collate_fn
