@@ -35,7 +35,7 @@ wandb.init(
     name=f"experiment_1",
       # Track hyperparameters and run metadata
       config={
-      "batch_size": 64,
+      "batch_size": 32,
       "architecture": "Maskformer",
       "dataset": "MyResidueData",
       "epochs": 25,
@@ -152,14 +152,14 @@ val_sampler = DistributedSampler(val_dataset)
 
 train_dataloader = DataLoader(
     train_dataset,
-    batch_size=64,
+    batch_size=32,
     shuffle=False,
     sampler=train_sampler,
     collate_fn=collate_fn
 )
 val_dataloader = DataLoader(
     val_dataset,
-    batch_size=64,
+    batch_size=32,
     shuffle=False,
     sampler=val_sampler,
     collate_fn=collate_fn
