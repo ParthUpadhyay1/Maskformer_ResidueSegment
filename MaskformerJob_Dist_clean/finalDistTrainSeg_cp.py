@@ -25,6 +25,8 @@ import torchvision.transforms as transforms
 import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel as DDP
 
+torch.cuda.empty_cache()
+
 # Login to Weights & Biases
 wandb.login()
 
