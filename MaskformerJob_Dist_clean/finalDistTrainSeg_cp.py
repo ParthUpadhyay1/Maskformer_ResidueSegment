@@ -34,7 +34,6 @@ wandb.login()
 wandb.init(
     project='Distributed-Maskformer-1', 
     entity='agrifarm',
-    name=f"experiment_1",
       # Track hyperparameters and run metadata
       config={
       "batch_size": 32,
@@ -48,6 +47,7 @@ wandb.init(
 image_path = '/root/home/data/Residue_02_16/Images/'
 mask_path = '/root/home/data/Residue_02_16/Masks/'
 
+print ("updated code-1")
 # Create the MaskFormer Image Preprocessor
 processor = MaskFormerImageProcessor(
     reduce_labels=True,
