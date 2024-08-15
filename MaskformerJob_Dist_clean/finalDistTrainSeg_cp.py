@@ -43,9 +43,13 @@ wandb.init(
       }
     )
 
-# Create the dataset
-image_path = '/root/home/data/Residue_02_16/Images/'
-mask_path = '/root/home/data/Residue_02_16/Masks/'
+# Create the dataset (with cp)
+image_path = '/root/home/projectData/Residue_02_16/Images/'
+mask_path = '/root/home/projectData/Residue_02_16/Masks/'
+
+# # Create the dataset (without cp)
+# image_path = '/root/home/data/Residue_02_16/Images/'
+# mask_path = '/root/home/data/Residue_02_16/Masks/'
 
 print ("updated code-1")
 # Create the MaskFormer Image Preprocessor
