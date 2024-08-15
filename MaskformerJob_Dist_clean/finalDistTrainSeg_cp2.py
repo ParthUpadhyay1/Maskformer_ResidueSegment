@@ -43,13 +43,13 @@ wandb.init(
       }
     )
 
-# Create the dataset (with cp)
-image_path = '/root/home/projectData/Residue_02_16/Images/'
-mask_path = '/root/home/projectData/Residue_02_16/Masks/'
+# # Create the dataset (with cp)
+# image_path = '/root/home/projectData/Residue_02_16/Images/'
+# mask_path = '/root/home/projectData/Residue_02_16/Masks/'
 
-# # Create the dataset (without cp)
-# image_path = '/root/home/data/Residue_02_16/Images/'
-# mask_path = '/root/home/data/Residue_02_16/Masks/'
+# Create the dataset (without cp)
+image_path = '/root/home/data/Residue_02_16/Images/'
+mask_path = '/root/home/data/Residue_02_16/Masks/'
 
 print ("updated code-1")
 # Create the MaskFormer Image Preprocessor
@@ -182,7 +182,7 @@ model = DDP(model, device_ids=[local_rank], output_device=local_rank, find_unuse
 optimizer = torch.optim.Adam(model.parameters(), lr=5e-5)
 
 # Base directory to save the models
-base_dir = "models"
+base_dir = "/root/home/data/Residue_02_16/models_2"
 
 # Set number of epochs
 num_epochs = 25
