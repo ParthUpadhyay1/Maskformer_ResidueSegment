@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata: 
-  name: parth-dist-job-maskseg
+  name: parth-dist-job-maskseg2
 spec:
   template:
     spec:
