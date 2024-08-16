@@ -159,14 +159,14 @@ val_sampler = DistributedSampler(val_dataset)
 
 train_dataloader = DataLoader(
     train_dataset,
-    batch_size=32,
+    batch_size=64,
     shuffle=False,
     sampler=train_sampler,
     collate_fn=collate_fn
 )
 val_dataloader = DataLoader(
     val_dataset,
-    batch_size=32,
+    batch_size=64,
     shuffle=False,
     sampler=val_sampler,
     collate_fn=collate_fn
