@@ -36,10 +36,11 @@ wandb.init(
     entity='agrifarm',
       # Track hyperparameters and run metadata
       config={
-      "batch_size": 32,
+      "batch_size": 64,
       "architecture": "Maskformer",
       "dataset": "MyResidueData",
       "epochs": 25,
+      "Requested GPUs": 8
       }
     )
 
