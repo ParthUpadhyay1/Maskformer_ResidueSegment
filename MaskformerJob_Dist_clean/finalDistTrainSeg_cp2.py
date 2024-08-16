@@ -40,7 +40,7 @@ wandb.init(
       "architecture": "Maskformer",
       "dataset": "MyResidueData",
       "epochs": 25,
-      "Requested GPUs": 8
+      "Requested GPUs": 2-A100
       }
     )
 
