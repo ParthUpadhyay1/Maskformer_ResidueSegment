@@ -23,8 +23,8 @@ spec:
     emptyDir:
       medium: Memory
   containers:
-  - name: gpu-container
-    image: docker pull ubuntu
+  - name: ubuntu-container
+    image: ubuntu:latest
     command: ["sleep", "infinity"]
     resources:
       limits:
