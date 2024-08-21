@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+    name: parth-ubuntu-pod
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: nvidia.com/gpu.product
+            operator: In
+            values:
+            - NVIDIA-GeForce-RTX-3090
+            - NVIDIA-A10
+  volumes:
+  
+  - name: data
+    persistentVolumeClaim:
+      claimName: parth-residue
+
+  - name: dshm
+    emptyDir:
+      medium: Memory
+  containers:
+  - name: gpu-container
+    image: docker pull ubuntu
+    command: ["sleep", "infinity"]
+    resources:
+      limits:
+        memory: 32Gi
+        cpu: 16
+        nvidia.com/gpu: 1
+        ephemeral-storage: "1000G"
+      requests:
+        memory: 32Gi
+        cpu: 16
+        nvidia.com/gpu: 1
+        ephemeral-storage: "1000G"
+    volumeMounts:
+      - name: data
+        mountPath: /root/home/test_data
+      - name: dshm
+        mountPath: /dev/shm
