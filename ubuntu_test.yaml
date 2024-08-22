@@ -28,12 +28,12 @@ spec:
     command: ["sleep", "infinity"]
     resources:
       limits:
-        memory: 64Gi
+        memory: 32Gi
         cpu: 16
         nvidia.com/gpu: 1
         ephemeral-storage: "1000G"
       requests:
-        memory: 64Gi
+        memory: 32Gi
         cpu: 16
         nvidia.com/gpu: 1
         ephemeral-storage: "1000G"
